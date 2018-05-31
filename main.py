@@ -1,5 +1,6 @@
 import re
 from robobrowser import RoboBrowser
+import meta_redirect
 
 #Browse Integra ITS
 browser = RoboBrowser(parser='html.parser',history=True)
@@ -17,5 +18,9 @@ form['userid'].value = nrp
 form['password'].value = password
 browser.submit_form(form)
 
-#Forward to page History
-print(browser.parsed)
+#Forward to page Dashboard Integra
+browser.open('https://integra.its.ac.id/dashboard.php?sim=AKADX__-__')
+
+#Extract meta data refresh integra
+browser.open(meta_redirect.getUrl(str(browser.parsed)))
+print(browser)
