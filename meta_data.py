@@ -6,6 +6,10 @@ def getHref(html):
     for tr in soup.find_all(id="form2"):
         return tr.a.get('href')
 
+def isCompleted(html):
+    soup = bs4.BeautifulSoup(html, 'lxml')
+    return soup.find("td", text="[Kuesioner sudah dilakukan]")
+
 def getUrl(content):
     root = soupparser.fromstring(content)
     result_url = root.xpath('//meta[@http-equiv="refresh"]/@content')

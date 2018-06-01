@@ -6,5 +6,10 @@ def ipm(kusioner):
     kusioner['txtKomentar'].value = 'Mantap'
     kusioner['chkPermanent'].value = '1'
 
-def ipd(kusioner)
-    
+def ipd(kusioner):
+    counter = 1
+    while counter <= 10:
+        kusioner['DO'+str(counter)].value = '4'
+        counter += 1
+    kusioner['txtKomentar'].value = 'Mantap'
+    kusioner['chkPermanent'].value = '1'

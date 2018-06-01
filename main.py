@@ -33,17 +33,19 @@ n = len(matkul['mk_kuesioner'].options)
 arrOptionValue = matkul['mk_kuesioner'].options
 while n>1:
     n -= 1
+    browser.open('http://akademik3.its.ac.id/ipd_kuesionermk.php')
     matkul['mk_kuesioner'].value = arrOptionValue[n]
     browser.submit_form(matkul)
-    # if browser.select('input#MK11'):
-        # kusioner = browser.get_form(id='form2')
-    #     fill_ipd.ipm(kusioner)
-    #     browser.submit_form(kusioner)
-    #     break
+    if meta_data.isCompleted(str(browser.parsed)):
+        continue
+    if browser.select('input#MK11'):
+        kusionerMK = browser.get_form(id='form2')
+        fill_ipd.ipm(kusionerMK)
+        browser.submit_form(kusionerMK)
     if browser.select('h1.pagetitle'):
-        # print(browser.open('http://akademik3.its.ac.id/'+str(meta_data.getHref(str(browser.parsed)))))
         link = 'http://akademik3.its.ac.id/'+str(meta_data.getHref(str(browser.parsed)))
         browser.open(link)
         kusionerDosen = browser.get_form(id='form2')
-        print(kusionerDosen)
-        break
+        fill_ipd.ipd(kusionerDosen)
+        browser.submit_form(kusionerDosen)
+    print('Succes Fill MK')
