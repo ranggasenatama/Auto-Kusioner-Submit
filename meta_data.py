@@ -1,4 +1,10 @@
 from lxml.html import soupparser
+import bs4
+
+def getHref(html):
+    soup = bs4.BeautifulSoup(html, 'lxml')
+    for tr in soup.find_all(id="form2"):
+        return tr.a.get('href')
 
 def getUrl(content):
     root = soupparser.fromstring(content)
